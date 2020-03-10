@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-class DataModel: NSObject {
+struct DataModel {
     var title: String?
     var id: String?
     var thumbnailUrl: String?
     
+}
+struct ListingDetailsModel {
+    var title: String?
+    var listingId: String?
+    var region: String?
+    var categoryName: String?
 }

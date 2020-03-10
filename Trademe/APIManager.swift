@@ -35,7 +35,7 @@ class APIManager: NSObject {
                     if let jsonDictionary = json as [String : Any]? {
                         if let results = jsonDictionary["Subcategories"] as? NSArray {
                             for dict in results {
-                                let dataModel =  DataModel()
+                                var dataModel =  DataModel()
                                 if let resultDict = dict as? NSDictionary {
                                     if let title = resultDict["Name"] as? String{
                                         dataModel.title = title
@@ -85,14 +85,13 @@ class APIManager: NSObject {
                 
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
-//                    print(json as Any)
                     if let jsonDictionary = json as [String : Any]? {
                         if let results = jsonDictionary["List"] as? NSArray {
                             var loopCount = 0
                             for dict in results {
                                 loopCount += 1
                                 if loopCount <= 20{
-                                    let dataModel =  DataModel()
+                                    var dataModel =  DataModel()
                                     if let resultDict = dict as? NSDictionary {
                                         if let title = resultDict["Title"] as? String{
                                             dataModel.title = title
@@ -110,6 +109,54 @@ class APIManager: NSObject {
                         }
                     }
                     onSuccess(self?.dataModelArray ?? [] )
+                    
+                } catch {
+                    print("JSONSerialization error:", error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getListingDetails(listingID: String, onSuccess: @escaping(ListingDetailsModel) -> Void, onFailure: @escaping(Error) -> Void){
+        let baseURL = String(format: "https://api.tmsandbox.co.nz/v1/Listings/%@.json", listingID)
+        guard let url = URL(string:baseURL) else { return }
+
+        var request = URLRequest(url: url)
+        request.setValue("OAuth oauth_consumer_key=\"BD3ADC476CA0B2A24874709ACEE004D2\",oauth_signature_method=\"PLAINTEXT\", oauth_signature=\"9E56645B4CE86664E762A1AA8136AD15&\"", forHTTPHeaderField: "Authorization")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            
+            if error != nil {
+                print("Client error!")
+                onFailure(error!)
+            }
+            else{
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    let serviceError: NSError = NSError(domain: "", code: 400, userInfo: nil)
+                    onFailure(serviceError)
+                    print("Server error!")
+                    return
+                }
+                var listingDetailsModel = ListingDetailsModel()
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
+                    if let resultDict = json as [String : Any]? {
+                        if let title = resultDict["Title"] as? String{
+                            listingDetailsModel.title = title
+                        }
+                        if let number = resultDict["ListingId"] as? Int{
+                            listingDetailsModel.listingId = String(number)
+                        }
+                        if let categoryName = resultDict["CategoryName"] as? String{
+                            listingDetailsModel.categoryName = categoryName
+                        }
+                        if let region = resultDict["Region"] as? String{
+                            listingDetailsModel.region = region
+                        }
+                    }
+                    onSuccess(listingDetailsModel)
                     
                 } catch {
                     print("JSONSerialization error:", error)

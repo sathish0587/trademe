@@ -61,6 +61,14 @@ class CategoryTableViewController: UITableViewController {
             }.resume();
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if (segue.identifier == "DetailsViewSegue") {
+            if let indexPath = tableView.indexPathForSelectedRow{
+                let viewController:ListingDetailsViewController = segue.destination as! ListingDetailsViewController
+                viewController.listingID = self.listingDataModel?[indexPath.row].id ?? ""
+            }
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,8 +99,9 @@ class CategoryTableViewController: UITableViewController {
         return cell
     }
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let alert = UIAlertController(title: "Thanks", message: "", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-    self.present(alert, animated: true, completion: nil)    }
+    
+    performSegue(withIdentifier: "DetailsViewSegue", sender: self)
+    
+    }
 
 }

@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYP-2y-Kxx">
-                                                    <rect key="frame" x="50" y="17" width="314" height="21"/>
+                                                    <rect key="frame" x="50" y="17" width="45" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                                                 <constraint firstItem="eYP-2y-Kxx" firstAttribute="leading" secondItem="FX7-uW-9Ji" secondAttribute="leadingMargin" constant="30" id="9ag-tf-FMe"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="eYP-2y-Kxx" secondAttribute="bottom" constant="6" id="Dya-Ww-etg"/>
                                                 <constraint firstItem="eYP-2y-Kxx" firstAttribute="top" secondItem="FX7-uW-9Ji" secondAttribute="topMargin" constant="6" id="Jdx-Cp-kNt"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eYP-2y-Kxx" secondAttribute="trailing" constant="30" id="VhY-QD-eYm"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="eYP-2y-Kxx" secondAttribute="trailing" constant="30" id="VhY-QD-eYm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -135,10 +135,74 @@
                             <outlet property="delegate" destination="zKj-af-Oy3" id="v4H-mm-wke"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="pIW-2w-2qK" kind="show" identifier="DetailsViewSegue" id="0sX-0B-v0s"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVc-CB-SQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1769.5652173913045" y="109.82142857142857"/>
+        </scene>
+        <!--Listing Details View Controller-->
+        <scene sceneID="24M-Zr-MNV">
+            <objects>
+                <viewController id="pIW-2w-2qK" customClass="ListingDetailsViewController" customModule="Trademe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sJ9-jr-BYL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y30-GN-6sf">
+                                <rect key="frame" x="30" y="128" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDo-ji-VtN">
+                                <rect key="frame" x="30" y="148" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foO-so-s2W">
+                                <rect key="frame" x="30" y="168" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztq-gP-mpd">
+                                <rect key="frame" x="30" y="188" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="foO-so-s2W" firstAttribute="trailing" secondItem="Y30-GN-6sf" secondAttribute="trailing" id="4kv-d2-4S9"/>
+                            <constraint firstItem="Y30-GN-6sf" firstAttribute="top" secondItem="WvZ-1G-5Pk" secondAttribute="top" constant="40" id="9OP-ux-IkM"/>
+                            <constraint firstItem="Y30-GN-6sf" firstAttribute="leading" secondItem="WvZ-1G-5Pk" secondAttribute="leading" constant="30" id="BZ4-lI-JG2"/>
+                            <constraint firstItem="EDo-ji-VtN" firstAttribute="trailing" secondItem="Y30-GN-6sf" secondAttribute="trailing" id="Fin-2X-aBI"/>
+                            <constraint firstItem="Ztq-gP-mpd" firstAttribute="trailing" secondItem="Y30-GN-6sf" secondAttribute="trailing" id="Li5-Ae-PAM"/>
+                            <constraint firstItem="foO-so-s2W" firstAttribute="top" secondItem="EDo-ji-VtN" secondAttribute="bottom" constant="20" id="Ll1-1S-d4n"/>
+                            <constraint firstItem="EDo-ji-VtN" firstAttribute="leading" secondItem="Y30-GN-6sf" secondAttribute="leading" id="WSd-OD-aYl"/>
+                            <constraint firstItem="Ztq-gP-mpd" firstAttribute="leading" secondItem="Y30-GN-6sf" secondAttribute="leading" id="ZCA-mq-bqD"/>
+                            <constraint firstItem="EDo-ji-VtN" firstAttribute="top" secondItem="Y30-GN-6sf" secondAttribute="bottom" constant="20" id="dCx-3H-c54"/>
+                            <constraint firstItem="foO-so-s2W" firstAttribute="leading" secondItem="Y30-GN-6sf" secondAttribute="leading" id="kiH-1c-F3g"/>
+                            <constraint firstItem="WvZ-1G-5Pk" firstAttribute="trailing" secondItem="Y30-GN-6sf" secondAttribute="trailing" constant="30" id="pxo-kN-Hby"/>
+                            <constraint firstItem="Ztq-gP-mpd" firstAttribute="top" secondItem="foO-so-s2W" secondAttribute="bottom" constant="20" id="wy0-8a-F26"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WvZ-1G-5Pk"/>
+                    </view>
+                    <connections>
+                        <outlet property="categoryLabel" destination="Ztq-gP-mpd" id="NGZ-6C-AlE"/>
+                        <outlet property="listingIDLabel" destination="EDo-ji-VtN" id="g0F-cl-Mr9"/>
+                        <outlet property="regionLabel" destination="foO-so-s2W" id="c9Q-nT-Bii"/>
+                        <outlet property="titleLabel" destination="Y30-GN-6sf" id="HEg-rC-9le"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B7P-Ef-tQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2533" y="110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kKe-er-odJ">
